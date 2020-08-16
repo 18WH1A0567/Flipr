@@ -1,0 +1,95 @@
+<head>
+    <script src="node_modules/chart.js/src/chart.js"></script>
+</head>
+
+<body style="overflow: hidden;">
+    <button (click) = "logout()" style="text-align: right;margin-left: 1300px;background-color: Transparent;border: none;">Logout</button>
+<h1 style="text-align: center;"><u>STOCK MARKET AND COMPANIES</u></h1>
+
+<div class="row">
+    <div class="column">
+        <div style="background-color: rgba(0, 77, 77, .9);width:370px;height:80px;text-align: center;margin-left: 200px;">
+            <p style="color: lightblue;">Select the type of stock index</p>
+            <select id="company" (change) = "displayStock($event.target.value)" [(ngModel)] = "selectedValue" style="width: 140px;">
+                <option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </option>
+                <option value="mod1">NSE</option>
+                <option value="mod2">BSE</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="column">
+        <div style="background-color: rgba(0, 77, 77, .9);width:370px;height:80px;text-align: center;">
+            <p style="color: lightblue;">Select the company to see it's revenue analysis</p>
+            <select id="company" (change) = "chooseCompany($event.target.value)" [(ngModel)] = "selectedValue" style="width: 140px;">
+                <option> </option>
+                <option value="d1">TATA</option>
+                <option value="d2">Reliance</option>
+                <option value="d3">Cipla</option>
+                <option value="d4">Ashok Leyland</option>
+                <option value="d5">Eichermot</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div *ngIf = "selectedValue == 'mod1' || selectedValue == 'mod2'">
+    <strong style="margin-left: 30px;">{{stock}}</strong><br>
+    <hr>
+    <hr style="border: 2px dashed lightslategrey;">
+    <i style="margin-left: 30px;">{{ind[0]}}</i>
+    <hr><hr>
+    <div class="row">
+        <div class="column">
+            <div class="column">
+                &nbsp;&nbsp;&nbsp;&nbsp;Open<hr>
+                &nbsp;&nbsp;&nbsp;&nbsp;Previous close<hr>
+                &nbsp;&nbsp;&nbsp;&nbsp;Day high<hr>
+            </div>
+            <div class="column">
+                {{ind[1] | currency}}<hr>
+                {{ind[2] | currency}}<hr>
+                {{ind[3] | currency}}<hr>
+            </div>
+        </div>
+        <div class="column">
+            <div class="column">
+                &nbsp;&nbsp;&nbsp;&nbsp;Day Low<hr>
+                &nbsp;&nbsp;&nbsp;&nbsp;52 Week High<hr>
+                &nbsp;&nbsp;&nbsp;&nbsp;52 Week Low<hr>
+            </div>
+            <div class="column">
+                {{ind[4] | currency}}<hr>
+                {{ind[5] | currency}}<hr>
+                {{ind[6] | currency}}<hr>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+
+
+<div style="width: 90%;" *ngIf="selectedValue == 'd1' || selectedValue == 'd2' ||selectedValue =='d3' || selectedValue =='d4' || selectedValue =='d5' ">
+ <canvas id="canvas"></canvas>
+</div>
+</body>
+
+<style>
+    * {
+  box-sizing: border-box;
+}
+
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height:170px; /* Should be removed. Only for demonstration */
+}
+</style>
+
+
